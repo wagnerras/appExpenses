@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'adptative_button.dart';
+import 'adptative_text_field.dart';
 
 class TransactionForm extends StatefulWidget {
   final void Function(String, double, DateTime) onSubmit;
 
-  TransactionForm(this.onSubmit);
+  const TransactionForm({
+    Key? key,
+    required this.onSubmit,
+  }) : super(key: key);
 
   @override
   _TransactionFormState createState() => _TransactionFormState();
@@ -57,14 +62,19 @@ class _TransactionFormState extends State<TransactionForm> {
           ),
           child: Column(
             children: <Widget>[
-              TextField(
+              /* TextField(
                 controller: _titleController,
                 onSubmitted: (_) => _submitForm,
                 decoration: const InputDecoration(
                   labelText: 'Título',
                 ),
+              ), */
+              AdptativeTextField(
+                controller: _titleController,
+                submitForm: _submitForm,
+                label: 'Título',
               ),
-              TextField(
+              /* TextField(
                 controller: _valueController,
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: true),
@@ -75,15 +85,20 @@ class _TransactionFormState extends State<TransactionForm> {
                 decoration: const InputDecoration(
                   labelText: 'Valor (R\$)',
                 ),
+              ), */
+              AdptativeTextField(
+                controller: _valueController,
+                submitForm: _submitForm,
+                label: 'Valor (R\$)',
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
               ),
               Container(
                 height: 70,
                 child: Row(
                   children: <Widget>[
                     Text(
-                      _selectedDate == null
-                          ? 'Nenhuma data selecionada!'
-                          : 'Data Selecionada: ${DateFormat('dd/MM/y').format(_selectedDate)}',
+                      'Data Selecionada: ${DateFormat('dd/MM/y').format(_selectedDate)}',
                     ),
                     TextButton(
                       child: const Text(
@@ -100,15 +115,10 @@ class _TransactionFormState extends State<TransactionForm> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
-                  ElevatedButton(
-                    child: Text(
-                      'Nova Transação',
-                      style: TextStyle(
-                        color: Theme.of(context).textTheme.button?.color,
-                      ),
-                    ),
+                  AdaptativeButton(
+                    label: 'Nova Transação',
                     onPressed: _submitForm,
-                  )
+                  ),
                 ],
               ),
             ],
