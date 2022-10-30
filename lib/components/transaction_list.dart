@@ -6,7 +6,8 @@ class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
   final void Function(String) onRemove;
 
-  TransactionList(this.transactions, this.onRemove);
+  const TransactionList(this.transactions, this.onRemove, {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -58,11 +59,11 @@ class TransactionList extends StatelessWidget {
                     DateFormat('d MMM y').format(tr.date),
                   ),
                   trailing: MediaQuery.of(context).size.width > 480
-                      ? FlatButton.icon(
+                      ? TextButton.icon(
                           onPressed: () => onRemove(tr.id),
                           icon: const Icon(Icons.delete),
                           label: const Text('Excluir'),
-                          textColor: Theme.of(context).errorColor,
+                          //textColor: Theme.of(context).errorColor,
                         )
                       : IconButton(
                           icon: const Icon(Icons.delete),

@@ -80,9 +80,7 @@ class _TransactionFormState extends State<TransactionForm> {
               AdaptativeDatePicker(
                 selectedDate: _selectedDate,
                 onDateChanged: (newDate) {
-                  setState(() {
-                    _selectedDate = newDate;
-                  });
+                  setState(() => _selectedDate = newDate);
                 },
               ),
               Row(

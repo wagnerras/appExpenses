@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:flutter/services.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class AdptativeTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -19,7 +20,7 @@ class AdptativeTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Platform.isIOS
+    return !kIsWeb && Platform.isIOS
         ? Padding(
             padding: const EdgeInsets.only(bottom: 10),
             child: CupertinoTextField(

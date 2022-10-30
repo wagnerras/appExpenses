@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class AdaptativeDatePicker extends StatelessWidget {
   final DateTime selectedDate;
@@ -29,7 +30,7 @@ class AdaptativeDatePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Platform.isIOS
+    return !kIsWeb && Platform.isIOS
         ? Container(
             height: 180,
             child: CupertinoDatePicker(
